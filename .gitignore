@@ -1,0 +1,48 @@
+# 컴파일된 바이너리 및 라이브러리 파일 등
+*.exe
+*.dll
+*.so
+*.o
+*.cfg
+
+# 사진, 작업물 관련 
+*.html
+*.png 
+*.xlsx 
+*.csv 
+
+# IDE 임시 파일 등
+.vscode/
+.idea/
+
+# temporal file 
+*tmp*.*
+
+# 로그 파일 등
+log/
+logs/
+
+# 캐시 파일 등
+__pycache__/
+node_modules/
+.ipynb_checkpoints/
+.DS_Store
+
+# data 폴더 내 
+data/
+etc/
+img/
+docs/ 
+local_db/
+
+# Virutual Env 
+ocean_yard_env/ 
+.python-version
+
+# Modeling 
+*log*
+catboost_info/
+*pkl*
+
+# private_config 
+*private*
