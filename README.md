@@ -32,7 +32,7 @@ git clone https://github.com/KIM-DKA/ocean_yard.git
 - **Direcrory** 
 
 ```
-cd ocean_yard 
+cd online_mall 
 ```
 --- 
 ## Virtual Enviroment Setting
@@ -45,23 +45,18 @@ conda env list
 
 - Create virtual Enviroments 
 ```
-conda create -n 'ocean_yard_env' python=3.10.12
+conda env create --file environment/environment.yaml
 ```
 
 - activate virtual env 
 ```
-conda activate ocean_yard_env
+conda activate online_env
 ```
 
 - Export Env yaml Setttings
 
 ```
  conda env export> environment.yaml
-```
-
-- Import Env yaml Setttings
-```
-conda env create -f environment.yaml
 ```
 
 - Project Packages Install 
@@ -73,6 +68,7 @@ pip install -r requirements.txt
 ## Create Env Shell Script
 
 프로젝트 PATH는 `senvironment.sh`에 `PYTHONPATH` 저장
+shell 실행경로는 work space 인 online_mall 로 설정
 
 - `environment.sh` Shell 스크립트 파일 작성 및 아래 내용 기입
 
@@ -89,7 +85,7 @@ chmod +x environment.sh
 - Shell Script 실행
 
 ```bash 
-source /path/to/environment.sh
+source set_env_vars.sh
 ```
 
 --- 

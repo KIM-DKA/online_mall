@@ -1,5 +1,6 @@
 import psycopg2
 import yaml
+import inspect
 import pandas as pd
 from sqlalchemy import create_engine
 
@@ -9,7 +10,7 @@ class PostgreSQL:
 
         self.config = None
         self.file_path = config_file_path
-
+        
         if self.file_path:
             self.load_credentials()
 
@@ -29,7 +30,7 @@ class PostgreSQL:
             self.port = port
             self.connection = None
             self.cursor = None
-
+        
         print('Initialize Class')
 
     def load_credentials(self):
@@ -69,26 +70,12 @@ class PostgreSQL:
         engine = create_engine(f'postgresql+psycopg2://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}')
         data.to_sql(name=table_name, con=engine, schema=schema, if_exists='append', index=False)
 
+    def exec_sql(self, query: str):
+        cur = self.cursor
+        cur.execute(query)
+        self.connection.commit()
 
 if __name__ == "__main__":
 
-    
     private_configs_file_path = './private_configs.yaml'
-    postgres = PostgreSQL(config_file_path=private_configs_file_path, request_url='postgre')
-
-    postgres = PostgreSQL(
-        host='localhost', 
-        database='dap', 
-        user='postgres',
-        password='',  
-        port='5432'
-    )
-
-    query = """
-    select * from information_schema.columns limit 10
-    """
-
-    postgres.connect()
-    data = postgres.read_data(query)
-    postgres.close()
-    
+    postgres = PostgreSQL(config_file_path=private_configs_file_path, request_url='local_postgre')
