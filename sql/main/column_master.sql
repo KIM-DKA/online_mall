@@ -1,6 +1,6 @@
-drop table if exists postgre.online_mall.column_master;
+drop table if exists online_mall.column_master;
 
-create table postgre.online_mall.column_master (
+create table online_mall.column_master (
     table_name varchar,
     column_name varchar,
     column_description varchar
