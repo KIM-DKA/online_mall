@@ -9,15 +9,29 @@ select
 	member.household_type,
 	member.member_type,
 	purchase.purchase_count,
-	purchase.purchase_amount
+	purchase.purchase_amount,
+	purchase.avg_purchase_day_differ
 from 
 (
 	-- 멤버별 구매빈도, 금액
-	select 
+	select
 		member_code,
 		count(purchase_date) as purchase_count,
-		sum(amount) as purchase_amount
-	from online_mall.order_log
+		sum(amount) as purchase_amount,
+		extract(day from (avg(next_purchase_date - purchase_date))) +
+		case
+			when extract(hour from (avg(next_purchase_date - purchase_date))) >= 12 then 1 else 0
+		end as avg_purchase_day_differ
+	from
+	(
+		select
+			member_code,
+			purchase_date,
+			lead(purchase_date) over (partition by member_code order by purchase_date) as next_purchase_date,
+			sum(amount) as amount
+		from online_mall.order_log
+		group by member_code, purchase_date
+	) as base
 	group by member_code
 ) as purchase
 left join
