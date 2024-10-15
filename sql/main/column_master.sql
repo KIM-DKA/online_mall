@@ -70,6 +70,7 @@ values
     ('purchase_frequency', 'member_type', '회원유형'),
     ('purchase_frequency', 'purchase_count', '구매빈도'),
     ('purchase_frequency', 'purchase_amount', '구매금액'),
+    ('purchase_frequency', 'avg_purchase_day_diff', '평균 구매빈도'),
 
     ('repurchase_behavior', 'member_code', '조합원코드'),
     ('repurchase_behavior', 'product_code', '상품코드'),
@@ -82,6 +83,7 @@ values
     ('repurchase_behavior_cohort_base', 'repurchase_group', '재구매횟수그룹'),
     ('repurchase_behavior_cohort_base', 'member_count', '재구매그룹별멤버수'),
     ('repurchase_behavior_cohort_base', 'repurchase_rate', '재구매율'),
+    ('repurchase_behavior_cohort_base', 'avg_unit_price', '평균가격'),
 
     ('member_demographic', 'member_code', '조합원코드'),
     ('member_demographic', 'age', '연령'),
