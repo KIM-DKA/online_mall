@@ -1,6 +1,6 @@
-drop table if exists postgre.online_mall.column_master;
+drop table if exists online_mall.column_master;
 
-create table postgre.online_mall.column_master (
+create table online_mall.column_master (
     table_name varchar,
     column_name varchar,
     column_description varchar
@@ -59,6 +59,65 @@ values
     ('member_info', 'marketing_consent_medical', '마케팅수신여부(의료사협'),
     ('member_info', 'investment', '출자금'),
     ('member_info', 'prepayment', '수매선수금'),
-    ('member_info', 'duplicate_membership_medical_and_coop', '중복가입여부(의료사협과생협)')
+    ('member_info', 'duplicate_membership_medical_and_coop', '중복가입여부(의료사협과생협)'),
 
+    ('purchase_frequency', 'member_code', '조합원코드'),
+    ('purchase_frequency', 'age_group', '연령그룹'),
+    ('purchase_frequency', 'state', '주소지(시도)'),
+    ('purchase_frequency', 'city', '주소지(시군구'),
+    ('purchase_frequency', 'household_size', '가구인원수'),
+    ('purchase_frequency', 'household_type', '가구유형'),
+    ('purchase_frequency', 'member_type', '회원유형'),
+    ('purchase_frequency', 'purchase_count', '구매빈도'),
+    ('purchase_frequency', 'purchase_amount', '구매금액'),
+
+    ('repurchase_behavior', 'member_code', '조합원코드'),
+    ('repurchase_behavior', 'product_code', '상품코드'),
+    ('repurchase_behavior', 'product_name', '상품명'),
+    ('repurchase_behavior', 'purchase_date', '구매일자'),
+    ('repurchase_behavior', 'repurchase', '재구매횟수'),
+    ('repurchase_behavior', 'price_group', '상품단가그룹'),
+
+    ('repurchase_behavior_cohort_base', 'product_code', '상품코드'),
+    ('repurchase_behavior_cohort_base', 'repurchase_group', '재구매횟수그룹'),
+    ('repurchase_behavior_cohort_base', 'member_count', '재구매그룹별멤버수'),
+    ('repurchase_behavior_cohort_base', 'repurchase_rate', '재구매율'),
+
+    ('member_demographic', 'member_code', '조합원코드'),
+    ('member_demographic', 'age', '연령'),
+    ('member_demographic', 'age_group', '연령그룹'),
+    ('member_demographic', 'gender', '성별'),
+    ('member_demographic', 'household_size', '가구원수'),
+    ('member_demographic', 'household_group', '가구원수그룹'),
+    ('member_demographic', 'household_type', '가구유형'),
+
+    ('member_type_consumtion', 'member_code', '조합원코드'),
+    ('member_type_consumtion', 'now_member_type', '현재 회원유형'),
+    ('member_type_consumtion', 'pay_member_type', '구매당시 회원유형'),
+    ('member_type_consumtion', 'agree_marketing_mall', '온라인몰 마케팅동의'),
+    ('member_type_consumtion', 'agree_marketing_coop', '조합 마케팅동의'),
+    ('member_type_consumtion', 'payment_number', '결제번호'),
+    ('member_type_consumtion', 'payment_date', '결제일자'),
+    ('member_type_consumtion', 'order_date', '주문일자'),
+    ('member_type_consumtion', 'prepayment_used_amount', '수매 선수금 사용금액'),
+    ('member_type_consumtion', 'mileage_used_amount', '마일리지 사용금액'),
+    ('member_type_consumtion', 'coupon_used', '쿠폰사용여부'),
+    ('member_type_consumtion', 'pay_amount', '결제금액'),
+    ('member_type_consumtion', 'order_amount', '주문금액'),
+    ('member_type_consumtion', 'order_category', '상품카테고리(대)'),
+
+    ('maketing_purchas_bevior', 'member_code', '조합원코드'),
+    ('maketing_purchas_bevior', 'member_status', '회원상태'),
+    ('maketing_purchas_bevior', 'member_type', '회원유형'),
+    ('maketing_purchas_bevior', 'agree_marketing_mall', '온라인몰 마케팅동의'),
+    ('maketing_purchas_bevior', 'agree_marketing_coop', '조합 마케팅동의'),
+    ('maketing_purchas_bevior', 'agree_marketing_medical', '의료사협 마케팅동의'),
+
+    ('marketing_effect', 'member_code', '조합원코드'),
+    ('marketing_effect', 'purchase_date', '구매날짜'),
+    ('marketing_effect', 'event_start_date', '이벤트시작날짜'),
+    ('marketing_effect', 'event_end_date', '이벤트종료날짜'),
+    ('marketing_effect', 'product_code', '상품코드'),
+    ('marketing_effect', 'quantity', '수량'),
+    ('marketing_effect', 'amount', '금액')
 ;
