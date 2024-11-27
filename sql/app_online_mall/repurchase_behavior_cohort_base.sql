@@ -2,6 +2,7 @@ create table if not exists app_online_mall.repurchase_behavior_cohort_base as
 
 select
 	member_cnt.product_code,
+	member_cnt.product_name,
 	member_cnt.repurchase_group,
 	member_cnt.member_count,
 	member_cnt.member_count::numeric / price.tot_member_cnt as repurchase_rate, 
