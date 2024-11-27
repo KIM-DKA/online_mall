@@ -1,3 +1,5 @@
+
+-- 수정 필요
 create table app_online_mall.marketing_purchase_behavior as
 select
 	info.member_code,
