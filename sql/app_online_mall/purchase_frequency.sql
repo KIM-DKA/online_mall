@@ -1,8 +1,11 @@
 create schema if not exists app_online_mall; 
+
 create table if not exists app_online_mall.purchase_frequency as
 select
 	purchase.member_code,
+	member.age,
 	member.age_group,
+	member.gender,
 	member.state,
 	member.city,
 	member.household_size,
@@ -39,8 +42,11 @@ left join
 	-- 멤버별 나이, 성별, 주거지, 가구, 회원유형
 	select
 		member_code,
-		age,
-		((age / 10)::int)::text || '0대' as age_group,
+		age,	
+		case 
+			when length(age::text) = 1 then '10세 미만'
+			else substr(age::text,1,1) || '0대'
+		end as age_group,
 		gender,
 		split_part(residence, ' ', 1) as state,
 		split_part(residence, ' ', 2) as city,
