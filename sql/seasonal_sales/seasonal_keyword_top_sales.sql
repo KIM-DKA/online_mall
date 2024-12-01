@@ -1,3 +1,5 @@
+-- * 과제 2-3: 시즌별 많이 팔린 비율 정리 (파이토, 항암, 유기농, 미네랄) (seosonal_keyword_top_sales)
+
 create table if not exists seasonal_sales.seasonal_keyword_top_sales as
 
 with seasonal_keyword as (

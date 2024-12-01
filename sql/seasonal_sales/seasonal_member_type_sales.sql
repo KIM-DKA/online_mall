@@ -1,3 +1,5 @@
+-- * 과제 2-4: 시즌별 많이 구매한 회원 등급 (seosonal_member_type_sales)
+
 create table if not exists seasonal_sales.seasonal_member_type_sales as
 
 with seasonal_member as ( 

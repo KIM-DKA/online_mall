@@ -1,3 +1,6 @@
+-- * 과제 2-1: 시즌별 매출 변화 및 구매 수량 트렌드 (seosonal_sales_trend) 
+
+
 create table seasonal_sales.seasonal_sales_trend as 
 with seasonal_category as (
 	

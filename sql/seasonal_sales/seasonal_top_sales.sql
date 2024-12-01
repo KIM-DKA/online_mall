@@ -1,3 +1,5 @@
+-- * 과제 2-2: 시즌별 가장 많이 팔린 품목 Top 20 (seosonal_top_sales)
+
 create table seasonal_sales.seasonal_top_sales as
 
 with season_product as (
