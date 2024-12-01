@@ -1,64 +1,68 @@
 create schema if not exists vip_member_sales;
 
-create table if not exists month_vip_member_sales as  
+create table if not exists vip_member_sales.month_vip_member_sales as  
 
-with order_base as (
-	select 
-		member_code,
-		extract('year' from purchase_date)::text as year,
-		extract('month' from purchase_date)::text as month,
-		amount
-	from online_mall.order_log
+with vip_member_trends as (
+    -- 상위 1% 고객의 월별 평균 구매금액, 구매주기, 총 구매량 계산
+    select 
+        year,
+        month,
+        avg(monthly_purchase_amount) as avg_purchase_amount,
+        avg(extract(day from (next_purchase_date - purchase_date))) as avg_purchase_interval,
+        sum(quantity) as total_quantity
+    from (
+        select 
+            member_code,
+            extract(year from purchase_date) as year,
+            extract(month from purchase_date) as month,
+            amount as monthly_purchase_amount,
+            purchase_date,
+            lead(purchase_date) over (partition by member_code, extract(year from purchase_date), extract(month from purchase_date) order by purchase_date) as next_purchase_date,
+            quantity
+        from 
+            online_mall.order_log
+        where member_code in (select member_code from vip_member_sales.month_vip_member)
+    ) as vip_purchases
+    group by year, month
 ),
-date_range as (
-	select
-		min(purchase_date) as min_date,
-		max(purchase_date) as max_date
-	from online_mall.order_log
-),
-all_month as (
 
-	select
-		extract('year' from date_series)::text as year,
-		extract('month' from date_series)::text as month
-	from
-	(	
-		select
-			generate_series(
-				(select min_date from date_range)::date,
-				(select max_date from date_range)::date,
-				'1 month'
-			) as date_series
-	) as series
-),
-member_list as (
-	select distinct member_code from order_base
-),
-cartesian as (
-	select * from member_list, all_month
-),
-padded as (
-	
-	select
-		cartesian.member_code,
-		cartesian.year,
-		cartesian.month,
-		
-		case
-			when order_base.amount is null then 0 else order_base.amount 	
-		end as amount
-		
-	from cartesian
-	left join order_base
-	on 
-		cartesian.member_code = order_base.member_code and
-		cartesian.year = order_base.year and
-		cartesian.month = order_base.month
+top_10_products as (
+    -- 상위 1% 고객의 월별 구매량이 많은 제품 Top 10
+    select 
+        year,
+        month,
+        product_code,
+        product_name,
+        total_quantity,
+        product_rank
+    from (
+        select 
+            extract(year from purchase_date) as year,
+            extract(month from purchase_date) as month,
+            product_code,
+            product_name,
+            sum(quantity) as total_quantity,
+            row_number() over (partition by extract(year from purchase_date), extract(month from purchase_date) order by sum(quantity) desc) as product_rank
+        from 
+            online_mall.order_log
+        where member_code in (select member_code from vip_member_sales.month_vip_member)
+        group by extract(year from purchase_date), extract(month from purchase_date), product_code, product_name
+    ) as ranked_products
+    where product_rank <= 10
 )
-select
-	member_code,
-	year,
-	month,
-	sum(amount) as amount
-from padded
-group by member_code, year, month
+
+select 
+    vmt.year,
+    vmt.month,
+    tp.product_code,
+    tp.product_name,
+    vmt.avg_purchase_amount,
+    vmt.avg_purchase_interval,
+    vmt.total_quantity,
+    tp.total_quantity as product_quantity,
+    tp.product_rank
+from 
+    vip_member_trends vmt
+left join top_10_products tp on vmt.year = tp.year and vmt.month = tp.month
+order by 
+    vmt.year, vmt.month, tp.product_rank;

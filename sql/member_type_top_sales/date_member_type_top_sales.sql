@@ -1,3 +1,5 @@
+-- * 과제 3-1: 회원 유형별, 요일별 구매 제품 Top 20 (date_member_type_top_sales) 
+
 create schema if not exists member_type_top_sales;
 create table if not exists member_type_top_sales.date_member_type_top_sales as
 with member_sales_base as (

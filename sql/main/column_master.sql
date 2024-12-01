@@ -160,4 +160,106 @@ values
     ('serach_keyword_purchase', 'order_date', '주문 날짜'),
     ('serach_keyword_purchase', 'ordered_keyword', '주문 키워드'),
 
+    -- search_purchase_sales 테이블
+
+    ('search_purchase_mapping', 'member_code', '조합원코드'),
+    ('search_purchase_mapping', 'search_date', '검색 날짜'),
+    ('search_purchase_mapping', 'searched_keyword_single', '검색 키워드(개별)'),
+    ('search_purchase_mapping', 'payment_number', '결제번호'),
+    ('search_purchase_mapping', 'purchase_date', '구매날짜'),
+    ('search_purchase_mapping', 'product_name', '상품명'),
+    ('search_purchase_mapping', 'quantity', '수량'),
+    ('search_purchase_mapping', 'amount', '금액'),
+    ('search_purchase_mapping', 'is_search_purchase', '검색어와 구매의 매칭 여부 (1이면 구매로 이어짐)'), 
+
+    -- search_purchase_sales 테이블 
+    ('search_purchase_sales', 'member_code', '조합원코드'),
+    ('search_purchase_sales', 'search_date', '검색 날짜'),
+    ('search_purchase_sales', 'payment_number', '결제번호'),
+    ('search_purchase_sales', 'tot_quantity', '총 구매 수량'),
+    ('search_purchase_sales', 'tot_amount', '총 구매 금액'), 
+
+    -- search_purchase_conversion_rate 테이블
+    ('search_purchase_conversion_rate', 'searched_keyword_single', '검색 키워드(개별)'),
+    ('search_purchase_conversion_rate', 'tot_cnt', '전체 검색 건수'),
+    ('search_purchase_conversion_rate', 'buy_cnt', '구매 건수'),
+    ('search_purchase_conversion_rate', 'conversion_rate', '구매 전환율 (%)'), 
+
+    -- seasonal_sales_trend 테이블
+    ('seasonal_sales_trend', 'season', '시즌 정보'),
+    ('seasonal_sales_trend', 'quantity', '총 구매 수량'),
+    ('seasonal_sales_trend', 'amount', '총 매출 금액'), 
+
+    -- seasonal_top_sales 테이블
+    ('seasonal_top_sales', 'season', '시즌 정보'),
+    ('seasonal_top_sales', 'product_code', '상품 코드'),
+    ('seasonal_top_sales', 'product_name', '상품명'),
+    ('seasonal_top_sales', 'amount', '총 매출 금액'),
+    ('seasonal_top_sales', 'amount_rnk', '매출 순위'),
+
+    -- seasonal_keyword_top_sales 테이블
+    ('seasonal_keyword_top_sales', 'season', '시즌 정보'),
+    ('seasonal_keyword_top_sales', 'keyword_group', '키워드 그룹 (예: 파이토, 항암, 유기농, 미네랄)'),
+    ('seasonal_keyword_top_sales', 'seasonal_keyword_quantity', '시즌별 키워드 그룹의 판매량 비율 (%)'),
+    ('seasonal_keyword_top_sales', 'seasonal_keyword_amount', '시즌별 키워드 그룹의 매출 금액 비율 (%)'),
+
+    -- seasonal_member_type_sales 테이블
+    ('seasonal_member_type_sales', 'year', '연도 정보'),
+    ('seasonal_member_type_sales', 'season', '시즌 정보'),
+    ('seasonal_member_type_sales', 'member_type', '회원 유형 (예: 실버, 골드, 프리미엄)'),
+    ('seasonal_member_type_sales', 'qunatity', '총 구매 수량'),
+    ('seasonal_member_type_sales', 'amount', '총 매출 금액'),
+
+    -- date_member_type_top_sales 테이블
+    ('date_member_type_top_sales', 'member_type', '회원 유형 (예: 실버, 골드, 프리미엄)'),
+    ('date_member_type_top_sales', 'day', '구매 요일'),
+    ('date_member_type_top_sales', 'product_code', '상품 코드'),
+    ('date_member_type_top_sales', 'product_name', '상품명'),
+    ('date_member_type_top_sales', 'amount', '총 매출 금액'),
+    ('date_member_type_top_sales', 'amount_rnk', '매출 순위 (Top 20 기준)'),
+
+    -- month_member_type_top_sales 테이블
+    ('month_member_type_top_sales', 'member_type', '회원 유형 (예: 실버, 골드, 프리미엄)'),
+    ('month_member_type_top_sales', 'month', '구매 월'),
+    ('month_member_type_top_sales', 'product_code', '상품 코드'),
+    ('month_member_type_top_sales', 'product_name', '상품명'),
+    ('month_member_type_top_sales', 'amount', '총 매출 금액'),
+    ('month_member_type_top_sales', 'amount_rnk', '매출 순위 (Top 20 기준)'),
+
+    -- new_member_top_sales 테이블
+    ('new_member_top_sales', 'member_type', '회원 유형 (예: 실버, 골드)'),
+    ('new_member_top_sales', 'product_code', '상품 코드'),
+    ('new_member_top_sales', 'product_name', '상품명'),
+    ('new_member_top_sales', 'amount', '총 매출 금액'),
+    ('new_member_top_sales', 'amount_rnk', '매출 순위 (Top 20 기준)'),
+
+    -- repurchase_member_top_sales 테이블
+    ('repurchase_member_top_sales', 'member_code', '조합원코드'),
+    ('repurchase_member_top_sales', 'product_code', '상품 코드'),
+    ('repurchase_member_top_sales', 'product_name', '상품명'),
+    ('repurchase_member_top_sales', 'amount', '총 매출 금액'),
+    ('repurchase_member_top_sales', 'amount_rank', '매출 순위 (Top 20 기준)'),
+    ('repurchase_member_top_sales', 'quantity', '총 구매 수량'),
+    ('repurchase_member_top_sales', 'quantity_rank', '구매 수량 순위 (Top 20 기준)'),
+
+    -- repurchase_member_type_top_sales 테이블
+    ('repurchase_member_type_top_sales', 'member_type', '회원 유형 (예: 실버, 골드, 프리미엄)'),
+    ('repurchase_member_type_top_sales', 'product_code', '상품 코드'),
+    ('repurchase_member_type_top_sales', 'product_name', '상품명'),
+    ('repurchase_member_type_top_sales', 'repurchase_count', '재구매 횟수'),
+    ('repurchase_member_type_top_sales', 'repurchase_rank', '재구매 순위 (Top 20 기준)'),
+
+    -- month_vip_member_sales 테이블
+
+    ('month_vip_member_sales', 'year', '구매 연도'),
+    ('month_vip_member_sales', 'month', '구매 월'),
+    ('month_vip_member_sales', 'product_code', '구매한 제품의 코드'),
+    ('month_vip_member_sales', 'product_name', '구매한 제품의 이름'),
+    ('month_vip_member_sales', 'avg_purchase_amount', '상위 1% 고객의 월별 평균 구매 금액'),
+    ('month_vip_member_sales', 'avg_purchase_interval', '상위 1% 고객의 월별 평균 구매 주기 (일 단위)'),
+    ('month_vip_member_sales', 'total_quantity', '상위 1% 고객의 월별 총 구매량'),
+    ('month_vip_member_sales', 'product_quantity', '상위 1% 고객의 월별 각 제품의 총 구매량'),
+    ('month_vip_member_sales', 'product_rank', '상위 1% 고객의 월별 각 제품의 구매 순위 (상위 10개 제품)')
+
+
 ;

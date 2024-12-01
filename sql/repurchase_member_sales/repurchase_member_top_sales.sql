@@ -1,3 +1,6 @@
+-- 5. 자주 구매하는 사람이 많이 구매하는 제품 Top 20 (완료) 
+
+
 create schema if not exists repurchase_member_sales;
 
 create table if not exists repurchase_member_sales.repurchase_member_top_sales as 

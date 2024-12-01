@@ -1,3 +1,5 @@
+-- * 과제 4: 신규 고객 구매 제품 Top 20 분석 (new_member_top_sales)
+
 create schema if not exists member_type_top_sales;
 create table if not exists member_type_top_sales.new_member_top_sales as
 with member_sales_base as (

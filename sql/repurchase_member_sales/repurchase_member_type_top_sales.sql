@@ -1,3 +1,6 @@
+
+-- 6. 회원 유형별 (실버, 골드, 프리미엄) 재구매 Top 20 (완료)
+
 create schema if not exists repurchase_member_sales;
 
 create table if not exists repurchase_member_sales.repurchase_member_type_top_sales as 
