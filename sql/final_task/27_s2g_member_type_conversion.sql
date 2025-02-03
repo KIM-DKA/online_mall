@@ -43,4 +43,4 @@ group by
     join_motivation,
     state
 order by 
-    gold_join_month, silver_join_month, join_date, age_group, join_motivation_aft, state;
+    gold_join_month, silver_join_month, join_date, age_group, join_motivation, state;

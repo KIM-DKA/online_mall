@@ -1,6 +1,3 @@
--- 26_member_type_coupon_comparison : 회원 등급별 쿠폰 사용과 미사용에 따른 구매 금액 비교 
-
-create table if not exists final_task.member_type_coupon_sales as
 
 select
     mi.member_type, -- 회원 유형
